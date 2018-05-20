@@ -44,6 +44,15 @@
             this.EncryptSessionKey = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
+            // OpenFileDialog
+            // 
+            this.OpenFileDialog.DereferenceLinks = false;
+            this.OpenFileDialog.Filter = "Text files (*.txt)|*.txt";
+            // 
+            // SaveFileDialog
+            // 
+            this.SaveFileDialog.Filter = "Text files (*.txt)|*.txt";
+            // 
             // SaveEncryptedFile
             // 
             this.SaveEncryptedFile.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
