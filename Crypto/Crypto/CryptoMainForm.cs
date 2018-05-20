@@ -8,12 +8,13 @@ namespace Crypto
     {
         private int KeySize;
         RSACryptoServiceProvider provider;
+        RSAParameters parameters;
         public CryptoMainForm()
         {
             InitializeComponent();
             KeySize = 1024;
             provider = new RSACryptoServiceProvider(KeySize);
-
+            parameters = provider.ExportParameters(false);  //вот тут все ключи
         }
 
         private void GenerateDS_Click(object sender, EventArgs e)
