@@ -89,7 +89,7 @@
             this.GenerateDS.TabIndex = 6;
             this.GenerateDS.Text = "Сгенерировать";
             this.GenerateDS.UseVisualStyleBackColor = true;
-            this.GenerateDS.Click += new System.EventHandler(this.Generate_Click);
+            this.GenerateDS.Click += new System.EventHandler(this.GenerateDS_Click);
             // 
             // ChooseFile
             // 
@@ -156,6 +156,7 @@
             this.CheckDS.TabIndex = 13;
             this.CheckDS.Text = "Проверить";
             this.CheckDS.UseVisualStyleBackColor = true;
+            this.CheckDS.Click += new System.EventHandler(this.CheckDS_Click);
             // 
             // DecryptSessionKey
             // 
@@ -166,6 +167,7 @@
             this.DecryptSessionKey.TabIndex = 18;
             this.DecryptSessionKey.Text = "Расшифровать";
             this.DecryptSessionKey.UseVisualStyleBackColor = true;
+            this.DecryptSessionKey.Click += new System.EventHandler(this.DecryptSessionKey_Click);
             // 
             // EncryptSessionKey
             // 
@@ -176,6 +178,7 @@
             this.EncryptSessionKey.TabIndex = 17;
             this.EncryptSessionKey.Text = "Зашифровать";
             this.EncryptSessionKey.UseVisualStyleBackColor = true;
+            this.EncryptSessionKey.Click += new System.EventHandler(this.EncryptSessionKey_Click);
             // 
             // label1
             // 

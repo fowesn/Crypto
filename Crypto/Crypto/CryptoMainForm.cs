@@ -16,7 +16,7 @@ namespace Crypto
 
         }
 
-        private void Generate_Click(object sender, EventArgs e)
+        private void GenerateDS_Click(object sender, EventArgs e)
         {
 
         }
@@ -32,6 +32,21 @@ namespace Crypto
         }
 
         private void SaveDecryptedFile_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EncryptSessionKey_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DecryptSessionKey_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CheckDS_Click(object sender, EventArgs e)
         {
 
         }
