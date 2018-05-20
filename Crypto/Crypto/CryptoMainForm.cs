@@ -4,17 +4,29 @@ using System.Security.Cryptography;
 using System.Text;
 namespace Crypto
 {
+
     public partial class CryptoMainForm : Form
     {
         private int KeySize;
-        RSACryptoServiceProvider provider;
+        RSACryptoServiceProvider rsaprovider;
+        AesCryptoServiceProvider aesprovider;
         RSAParameters parameters;
+
         public CryptoMainForm()
         {
             InitializeComponent();
             KeySize = 1024;
-            provider = new RSACryptoServiceProvider(KeySize);
-            parameters = provider.ExportParameters(false);  //вот тут все ключи
+            rsaprovider = new RSACryptoServiceProvider(KeySize);
+            parameters = rsaprovider.ExportParameters(false);  //вот тут все ключи
+            aesprovider = new AesCryptoServiceProvider();
+            // создание сеансового ключа
+            aesprovider.GenerateKey();
+            // вывод сеансового ключа
+            StringBuilder sb = new StringBuilder();
+            foreach(byte bytekey in aesprovider.Key)
+                sb.Append(bytekey);
+            
+            SessionKey.Text = sb.ToString();
         }
 
         private void GenerateDS_Click(object sender, EventArgs e)
