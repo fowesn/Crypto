@@ -36,7 +36,6 @@
             this.GenerateDS = new System.Windows.Forms.Button();
             this.ChooseFile = new System.Windows.Forms.Button();
             this.SaveDecryptedFile = new System.Windows.Forms.Button();
-            this.DigitalSignature = new System.Windows.Forms.Label();
             this.FilePath = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.CheckDS = new System.Windows.Forms.Button();
@@ -121,17 +120,6 @@
             this.SaveDecryptedFile.UseVisualStyleBackColor = true;
             this.SaveDecryptedFile.Click += new System.EventHandler(this.SaveDecryptedFile_Click);
             // 
-            // DigitalSignature
-            // 
-            this.DigitalSignature.BackColor = System.Drawing.Color.White;
-            this.DigitalSignature.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DigitalSignature.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DigitalSignature.Location = new System.Drawing.Point(171, 155);
-            this.DigitalSignature.Name = "DigitalSignature";
-            this.DigitalSignature.Size = new System.Drawing.Size(677, 32);
-            this.DigitalSignature.TabIndex = 14;
-            this.DigitalSignature.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // FilePath
             // 
             this.FilePath.BackColor = System.Drawing.Color.White;
@@ -148,7 +136,7 @@
             this.label4.BackColor = System.Drawing.Color.White;
             this.label4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(11, 155);
+            this.label4.Location = new System.Drawing.Point(350, 191);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(161, 32);
             this.label4.TabIndex = 16;
@@ -201,7 +189,6 @@
             this.Controls.Add(this.EncryptSessionKey);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.FilePath);
-            this.Controls.Add(this.DigitalSignature);
             this.Controls.Add(this.CheckDS);
             this.Controls.Add(this.SaveDecryptedFile);
             this.Controls.Add(this.ChooseFile);
@@ -227,7 +214,6 @@
         private System.Windows.Forms.Button GenerateDS;
         private System.Windows.Forms.Button ChooseFile;
         private System.Windows.Forms.Button SaveDecryptedFile;
-        private System.Windows.Forms.Label DigitalSignature;
         private System.Windows.Forms.Label FilePath;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button CheckDS;

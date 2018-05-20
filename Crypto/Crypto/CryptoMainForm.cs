@@ -10,9 +10,11 @@ namespace Crypto
     public partial class CryptoMainForm : Form
     {
         private int KeySize;
-        RSACryptoServiceProvider rsaprovider;
-        AesCryptoServiceProvider aesprovider;
-        RSAParameters parameters;
+        private string SignPath;
+        private RSACryptoServiceProvider rsaprovider;
+        private AesCryptoServiceProvider aesprovider;
+        private DSACryptoServiceProvider dsaprovider;
+        private RSAParameters parameters;
 
         public CryptoMainForm()
         {
@@ -20,6 +22,7 @@ namespace Crypto
             KeySize = 1024;
             rsaprovider = new RSACryptoServiceProvider(KeySize);
             parameters = rsaprovider.ExportParameters(false);  //вот тут все ключи
+            dsaprovider = new DSACryptoServiceProvider(KeySize);
             aesprovider = new AesCryptoServiceProvider();
             // создание сеансового ключа
             aesprovider.GenerateKey();
@@ -32,6 +35,8 @@ namespace Crypto
             
             SessionKey.Text = sb.ToString();
 
+            // нельзя расшифровать ключ, пока он не зашифрован
+            DecryptSessionKey.Enabled = false;
             // пока не выбран файл, нельзя работать с подписью
             GenerateDS.Enabled = false;
             CheckDS.Enabled = false;
@@ -46,6 +51,13 @@ namespace Crypto
                 return;
 
             FilePath.Text = OpenFileDialog.FileName;
+
+            string[] PartPath = FilePath.Text.Split(new char[] { '\\' });
+            SignPath = "";
+            for (int i = 0; i < PartPath.Length - 1; i++)
+                SignPath += PartPath[i] + "\\";
+            SignPath += "sign." + PartPath[PartPath.Length - 1] + ".sign";
+
             // после выбора файла можно со спокойной душой тыкать на все кнопки
             GenerateDS.Enabled = true;
             CheckDS.Enabled = true;
@@ -109,15 +121,18 @@ namespace Crypto
         private void EncryptSessionKey_Click(object sender, EventArgs e)
         {
             StringBuilder sb = new StringBuilder();
+            // метод для шифрования rsa
             EncryptedKey = rsaprovider.Encrypt(aesprovider.Key, true);
             foreach (byte bytekey in EncryptedKey)
                 sb.Append(bytekey);
             SessionKey.Text = sb.ToString();
+            DecryptSessionKey.Enabled = true;
         }
 
         private void DecryptSessionKey_Click(object sender, EventArgs e)
         {
             StringBuilder sb = new StringBuilder();
+            // метод для расшифрования rsa
             byte[] DecryptedKey = rsaprovider.Decrypt(EncryptedKey, true);
             foreach (byte bytekey in DecryptedKey)
                 sb.Append(bytekey);
@@ -126,12 +141,34 @@ namespace Crypto
 
         private void GenerateDS_Click(object sender, EventArgs e)
         {
-
+            MemoryStream ms = new MemoryStream(File.ReadAllBytes(FilePath.Text));
+            // метод для создания цифровой подписи
+            byte[] Sign = dsaprovider.SignData(ms);
+            File.WriteAllBytes(SignPath, Sign);
+            MessageBox.Show("Документ подписан", "Ура");
         }
 
         private void CheckDS_Click(object sender, EventArgs e)
         {
-
+            if (!File.Exists(SignPath))
+            {
+                MessageBox.Show("Подпись не найдена", "Боль", MessageBoxButtons.OK);
+                return;
+            }
+            byte[] Sign = File.ReadAllBytes(SignPath);
+            // пытаемся проверить цифровую подпись. если исключение, значит длина подпичи не равняется 40 байтам, иначе проверяется подпись на совпадение
+            try
+            {
+                // метод для проверки цифровой подписи
+                if (dsaprovider.VerifyData(File.ReadAllBytes(FilePath.Text), Sign))
+                    MessageBox.Show("Подпись совпадает", "Всё хорошо", MessageBoxButtons.OK);
+                else
+                    MessageBox.Show("Подпись не совпадает", "Всё плохо", MessageBoxButtons.OK);
+            }
+            catch
+            {
+                MessageBox.Show("В файле " + SignPath + " содержится не подпись", "Всё плохо", MessageBoxButtons.OK);
+            }
         }
     }
 }
