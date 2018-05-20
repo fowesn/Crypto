@@ -93,24 +93,31 @@ namespace Crypto
                 return;
 
             string Path = FilePath.Text;
-            
-            //дешифратор
-            ICryptoTransform decryptor = aesprovider.CreateDecryptor();
 
-            // создаём поток с данными из зашфрованного файла
-            MemoryStream ms = new MemoryStream(File.ReadAllBytes(Path));
-            // создаём поток с дешифратором
-            CryptoStream cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read);
-            StreamReader sr = new StreamReader(cs);
-            string Message = sr.ReadToEnd();
+            try
+            {
+                //дешифратор
+                ICryptoTransform decryptor = aesprovider.CreateDecryptor();
 
-            sr.Close(); cs.Close(); ms.Close();
+                // создаём поток с данными из зашфрованного файла
+                MemoryStream ms = new MemoryStream(File.ReadAllBytes(Path));
+                // создаём поток с дешифратором
+                CryptoStream cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read);
+                StreamReader sr = new StreamReader(cs);
+                string Message = sr.ReadToEnd();
 
-            // записываем расшифрованное сбщ в файл
-            StreamWriter sw = new StreamWriter(SaveDecryptedFileDialog.OpenFile());
-            sw.Write(Message);
-            sw.Close();
-            MessageBox.Show("Расшифровано", "Ура", MessageBoxButtons.OK);
+                sr.Close(); cs.Close(); ms.Close();
+
+                // записываем расшифрованное сбщ в файл
+                StreamWriter sw = new StreamWriter(SaveDecryptedFileDialog.OpenFile());
+                sw.Write(Message);
+                sw.Close();
+                MessageBox.Show("Расшифровано", "Ура", MessageBoxButtons.OK);
+            }
+            catch
+            {
+                MessageBox.Show("Файл не зашифрован или зашифрован другим алгоритмом", "Беда", MessageBoxButtons.OK);
+            }
         }
         private byte[] EncryptedKey;
         private void EncryptSessionKey_Click(object sender, EventArgs e)
