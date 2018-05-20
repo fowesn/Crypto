@@ -36,7 +36,15 @@ namespace Crypto
 
         private void ChooseFile_Click(object sender, EventArgs e)
         {
+            if (OpenFileDialog.ShowDialog() != DialogResult.OK)
+                return;
 
+            FilePath.Text = OpenFileDialog.FileName;
+
+            /*System.IO.StreamReader sr = new
+                   System.IO.StreamReader(OpenFileDialog.FileName);
+            MessageBox.Show(sr.ReadToEnd());
+            sr.Close();*/
         }
 
         private void SaveEncryptedFile_Click(object sender, EventArgs e)

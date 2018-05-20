@@ -42,8 +42,6 @@
             this.CheckDS = new System.Windows.Forms.Button();
             this.DecryptSessionKey = new System.Windows.Forms.Button();
             this.EncryptSessionKey = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.DigitalKey = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // SaveEncryptedFile
@@ -83,7 +81,7 @@
             // GenerateDS
             // 
             this.GenerateDS.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.GenerateDS.Location = new System.Drawing.Point(517, 224);
+            this.GenerateDS.Location = new System.Drawing.Point(517, 191);
             this.GenerateDS.Name = "GenerateDS";
             this.GenerateDS.Size = new System.Drawing.Size(162, 32);
             this.GenerateDS.TabIndex = 6;
@@ -150,7 +148,7 @@
             // CheckDS
             // 
             this.CheckDS.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CheckDS.Location = new System.Drawing.Point(686, 224);
+            this.CheckDS.Location = new System.Drawing.Point(686, 191);
             this.CheckDS.Name = "CheckDS";
             this.CheckDS.Size = new System.Drawing.Size(162, 32);
             this.CheckDS.TabIndex = 13;
@@ -180,36 +178,11 @@
             this.EncryptSessionKey.UseVisualStyleBackColor = true;
             this.EncryptSessionKey.Click += new System.EventHandler(this.EncryptSessionKey_Click);
             // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(11, 186);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(161, 32);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "Ключ";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // DigitalKey
-            // 
-            this.DigitalKey.BackColor = System.Drawing.Color.White;
-            this.DigitalKey.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DigitalKey.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DigitalKey.Location = new System.Drawing.Point(171, 186);
-            this.DigitalKey.Name = "DigitalKey";
-            this.DigitalKey.Size = new System.Drawing.Size(677, 32);
-            this.DigitalKey.TabIndex = 19;
-            this.DigitalKey.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // CryptoMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(860, 267);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.DigitalKey);
+            this.ClientSize = new System.Drawing.Size(860, 236);
             this.Controls.Add(this.DecryptSessionKey);
             this.Controls.Add(this.EncryptSessionKey);
             this.Controls.Add(this.label4);
@@ -246,8 +219,6 @@
         private System.Windows.Forms.Button CheckDS;
         private System.Windows.Forms.Button DecryptSessionKey;
         private System.Windows.Forms.Button EncryptSessionKey;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label DigitalKey;
     }
 }
 
