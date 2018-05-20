@@ -63,11 +63,6 @@ namespace Crypto
             CheckDS.Enabled = true;
             SaveEncryptedFile.Enabled = true;
             SaveDecryptedFile.Enabled = true;
-
-            /*System.IO.StreamReader sr = new
-                   System.IO.StreamReader(OpenFileDialog.FileName);
-            MessageBox.Show(sr.ReadToEnd());
-            sr.Close();*/
         }
 
         private void SaveEncryptedFile_Click(object sender, EventArgs e)
