@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.SaveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.SaveEncryptedFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.SaveEncryptedFile = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.SessionKey = new System.Windows.Forms.Label();
@@ -42,6 +42,7 @@
             this.CheckDS = new System.Windows.Forms.Button();
             this.DecryptSessionKey = new System.Windows.Forms.Button();
             this.EncryptSessionKey = new System.Windows.Forms.Button();
+            this.SaveDecryptedFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // OpenFileDialog
@@ -49,9 +50,9 @@
             this.OpenFileDialog.DereferenceLinks = false;
             this.OpenFileDialog.Filter = "Text files (*.txt)|*.txt";
             // 
-            // SaveFileDialog
+            // SaveEncryptedFileDialog
             // 
-            this.SaveFileDialog.Filter = "Text files (*.txt)|*.txt";
+            this.SaveEncryptedFileDialog.Filter = "Text files (*.txt)|*.txt";
             // 
             // SaveEncryptedFile
             // 
@@ -187,6 +188,10 @@
             this.EncryptSessionKey.UseVisualStyleBackColor = true;
             this.EncryptSessionKey.Click += new System.EventHandler(this.EncryptSessionKey_Click);
             // 
+            // SaveDecryptedFileDialog
+            // 
+            this.SaveDecryptedFileDialog.Filter = "Text files (*.txt)|*.txt";
+            // 
             // CryptoMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -215,7 +220,7 @@
         #endregion
 
         private System.Windows.Forms.OpenFileDialog OpenFileDialog;
-        private System.Windows.Forms.SaveFileDialog SaveFileDialog;
+        private System.Windows.Forms.SaveFileDialog SaveEncryptedFileDialog;
         private System.Windows.Forms.Button SaveEncryptedFile;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label SessionKey;
@@ -228,6 +233,7 @@
         private System.Windows.Forms.Button CheckDS;
         private System.Windows.Forms.Button DecryptSessionKey;
         private System.Windows.Forms.Button EncryptSessionKey;
+        private System.Windows.Forms.SaveFileDialog SaveDecryptedFileDialog;
     }
 }
 

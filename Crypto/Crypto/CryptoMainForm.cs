@@ -58,15 +58,10 @@ namespace Crypto
             sr.Close();*/
         }
 
-        private void GenerateDS_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void SaveEncryptedFile_Click(object sender, EventArgs e)
         {
             // выбрать файл для шифрования
-            if (SaveFileDialog.ShowDialog() != DialogResult.OK)
+            if (SaveEncryptedFileDialog.ShowDialog() != DialogResult.OK)
                 return;
             string Path = FilePath.Text;
             // перед шифрованием надо не иначе как считать файл
@@ -77,16 +72,17 @@ namespace Crypto
             // создаём энкриптор(шифратор) - как я поняла, это нужная штука для того чтобы зашифровать файл (юзается дальше для CryptoStream)
             ICryptoTransform encryptor = aesprovider.CreateEncryptor();
             // открываем файл как поток с шифратором
-            CryptoStream cs = new CryptoStream(SaveFileDialog.OpenFile(), encryptor, CryptoStreamMode.Write);
+            CryptoStream cs = new CryptoStream(SaveEncryptedFileDialog.OpenFile(), encryptor, CryptoStreamMode.Write);
             StreamWriter sw = new StreamWriter(cs);
             sw.Write(Message); // записываем в поток сообщение при помощи шифратора
             sw.Close();
             cs.Close();
+            MessageBox.Show("Зашифровано", "Ура", MessageBoxButtons.OK);
         }
 
         private void SaveDecryptedFile_Click(object sender, EventArgs e)
         {
-            if (SaveFileDialog.ShowDialog() != DialogResult.OK)
+            if (SaveDecryptedFileDialog.ShowDialog() != DialogResult.OK)
                 return;
 
             string Path = FilePath.Text;
@@ -104,18 +100,31 @@ namespace Crypto
             sr.Close(); cs.Close(); ms.Close();
 
             // записываем расшифрованное сбщ в файл
-            StreamWriter sw = new StreamWriter(SaveFileDialog.OpenFile());
+            StreamWriter sw = new StreamWriter(SaveDecryptedFileDialog.OpenFile());
             sw.Write(Message);
             sw.Close();
-             
+            MessageBox.Show("Расшифровано", "Ура", MessageBoxButtons.OK);
         }
-
+        private byte[] EncryptedKey;
         private void EncryptSessionKey_Click(object sender, EventArgs e)
         {
-
+            StringBuilder sb = new StringBuilder();
+            EncryptedKey = rsaprovider.Encrypt(aesprovider.Key, true);
+            foreach (byte bytekey in EncryptedKey)
+                sb.Append(bytekey);
+            SessionKey.Text = sb.ToString();
         }
 
         private void DecryptSessionKey_Click(object sender, EventArgs e)
+        {
+            StringBuilder sb = new StringBuilder();
+            byte[] DecryptedKey = rsaprovider.Decrypt(EncryptedKey, true);
+            foreach (byte bytekey in DecryptedKey)
+                sb.Append(bytekey);
+            SessionKey.Text = sb.ToString();
+        }
+
+        private void GenerateDS_Click(object sender, EventArgs e)
         {
 
         }
